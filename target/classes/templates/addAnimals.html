@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,6 +8,12 @@
 </head>
 <body>
 
+<!-- 
+ * @author amboggs- Abigail Boggs
+ * Apr 4, 2023
+ -->
+ 
+ <h2>Input a new Animal: </h2>
 <form th:object="${newAnimal}" th:action="@{/inputAnimal}" method='POST'>
 <input type="hidden" th:field="*{id}" />
 Animal Name: <input name="animalName" size="20" th:field="*{name}"> <br />
