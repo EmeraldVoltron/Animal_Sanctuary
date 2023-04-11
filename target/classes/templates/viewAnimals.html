@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>View All Animals</title>
+</head>
+
+<body>
+
+<form>
+<table>
+<h2> Animals: </h2>
+
+<tr th:each="currentAnimal : ${animals}" >
+	<td> <p>Animal Id:</p> </td>
+	<td th:text="${currentAnimal.id}" />
+	<td> <p> | Name:</p> </td>
+	<td th:text="${currentAnimal.name}"  />
+	<td> <p> |  Species: </p> </td>
+	<td th:text="${currentAnimal.species}" />
+	<td> <p> | Age: </p> </td>
+	<td th:text="${currentAnimal.age}" />
+	<td> <p> | Arrival Date: </p> </td>
+	<td th:text="${currentAnimal.arrivalDate}" />
+	<td> <p> | Good with kids? </p> </td>
+	<td th:text="${currentAnimal.goodWithKids}" />
+	
+	<td><a th:href="@{/edit/{id}(id=${currentAnimal.id})}">Edit</a></td>
+	<td><a th:href="@{/delete/{id}(id=${currentAnimal.id})}">Delete</a></td>
+	
+</tr>
+</table>
+</form>
+<a href="../inputAnimal">Add a new animal</a>
+
+
+
+</body>
+</html>

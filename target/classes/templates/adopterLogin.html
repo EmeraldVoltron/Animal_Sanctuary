@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Adopter Login</title>
+    
+</head>
+<body>
+    <h1>Adopter Login</h1>
+    <div th:if="${param.error}">
+        <div class="error-message">Invalid username or password.</div>
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">Login</button>
+    </form>
+    <div class="register-link">
+        <a th:href="@{/register}">Don't have an account? Register here.</a>
+    </div>
+</body>
+</html>
