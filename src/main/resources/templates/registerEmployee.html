@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Register Employee</title>
+
+ <link rel="stylesheet" th:href="@{/static/css/styles.css}">
+</head>
+<body>
+    <h1>Register Employee</h1>
+    <form th:action="@{/registerEmployee}" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+        </div>
+        <button type="submit">Register Employee</button>
+    </form>
+</body>
+</html>

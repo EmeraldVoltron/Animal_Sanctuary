@@ -6,12 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import animal.beans.Adopter;
 import animal.beans.AdopterLoginForm;
 import animal.beans.Animals;
+import animal.beans.EmployeeLoginForm;
 import animal.repository.AnimalRepository;
+import net.bytebuddy.matcher.ModifierMatcher.Mode;
 
 @Controller
 public class WebController {
@@ -50,7 +55,40 @@ public class WebController {
         //TODO: validate login and redirect to the view pets page
         return "redirect:/viewAll";
     }
+    
+    //AMB 4/11 - added employee login webcontrollers
+    @GetMapping("/employeeLogin")
+    public String showEmployeeLoginForm(Model model) {
+    	model.addAttribute("employeeLogin", new EmployeeLoginForm());
+    	return "/employeeLogin";
+    }
+    
+    @PostMapping("/employeeLogin")
+    public String submitEmployeeLoginForm(@ModelAttribute("employeeLogin") @Valid EmployeeLoginForm employeeLoginForm, BindingResult result) {
+    	if(result.hasErrors()) {
+    		return "/employeeLogin";
+    	}
+    	//TODO: validate login and redirect to employee menu page
+    	return "redirect:/employeeMenu";
+    }
+    
+    @GetMapping("/registerEmployee")
+    public String showEmployeeRegistrationForm(Model model) {
+        return "/registerEmployee";
+    }
 
+//    @PostMapping("/registerEmployee")
+//    public String registerEmployee(@ModelAttribute("employee") @Valid Employee employee, BindingResult result) {
+//        if (result.hasErrors()) {
+//            return "/registerEmployee";
+//        }
+//        //TODO: save adopter to database and redirect to login page
+//        return "redirect:/employeeLogin";
+//    }
+    
+    
+    
+    //AMB - Added animal methods for webcontroller
     @GetMapping({"/viewAll"})
     public String viewAllAnimals(Model model) {
         if (animalRepository.findAll().isEmpty()) {
