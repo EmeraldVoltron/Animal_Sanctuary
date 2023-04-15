@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import animal.beans.Adopter;
 import animal.beans.AdopterLoginForm;
 import animal.beans.Animals;
+import animal.beans.Address;
 import animal.beans.EmployeeLoginForm;
+import animal.repository.AdopterRepository;
 import animal.repository.AnimalRepository;
-import net.bytebuddy.matcher.ModifierMatcher.Mode;
+//import net.bytebuddy.matcher.ModifierMatcher.Mode;
 
 @Controller
 public class WebController {
@@ -24,37 +27,26 @@ public class WebController {
     @Autowired
     AnimalRepository animalRepository;
     
+    @Autowired
+    AdopterRepository adopterRepository;
+    
     @GetMapping("/register")
-    public String showRegistrationForm(Model model) {
+    public String showAdopterRegistrationForm(Model model) {
         model.addAttribute("adopter", new Adopter());
         return "/register";
     }
 
     @PostMapping("/register")
-    public String registerAdopter(@ModelAttribute("adopter") @Valid Adopter adopter, BindingResult result) {
+    public String submitAdopterRegistrationForm(@ModelAttribute("adopter") @Valid Adopter adopter, BindingResult result, @RequestParam("street") String street, @RequestParam("city") String city, @RequestParam("state") String state) {
         if (result.hasErrors()) {
             return "/register";
         }
-        //TODO: save adopter to database and redirect to login page
+        Address address = new Address(street, city, state);
+        adopter.setAddress(address);
+        adopterRepository.save(adopter);
         return "redirect:/adopterLogin";
     }
  
-
-    
-    @GetMapping("/adopterLogin")
-    public String showAdopterLoginForm(Model model) {
-        model.addAttribute("adopterLogin", new AdopterLoginForm());
-        return "/adopterLogin";
-    }
-
-    @PostMapping("/adopterLogin")
-    public String submitAdopterLoginForm(@ModelAttribute("adopterLogin") @Valid AdopterLoginForm adopterLoginForm, BindingResult result) {
-        if (result.hasErrors()) {
-            return "/adopterLogin";
-        }
-        //TODO: validate login and redirect to the view pets page
-        return "redirect:/viewAll";
-    }
     
     //AMB 4/11 - added employee login webcontrollers
     @GetMapping("/employeeLogin")

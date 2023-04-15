@@ -26,6 +26,8 @@ public class Adopter {
 	@Autowired
 	private Address address;
 	private boolean hasCriminalRecord = false;
+	private String username;
+    private String password;
 	
 	public Adopter(String name) {
 	}
@@ -37,5 +39,20 @@ public class Adopter {
 	public Adopter(Address address) {
 		
 	}
+	public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
 }
