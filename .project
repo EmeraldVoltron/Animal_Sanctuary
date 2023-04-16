@@ -24,6 +24,9 @@
 	<natures>
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
+<<<<<<< Updated upstream
 		<nature></nature>
+=======
+>>>>>>> Stashed changes
 	</natures>
 </projectDescription>
