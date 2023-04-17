@@ -22,30 +22,28 @@ public class Employee {
 	@Id
 	@GeneratedValue
 	private long id;
-	private String firstName;
-	private String lastName;
+	private String name;
 	private String phone;
 	private String email;
+	private String username;
+    private String password;
 	
-	public Employee(String firstName, String lastName) {
+	public Employee(String name) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.name = name;
 	}
 	
-	public Employee(String firstName, String lastName, String phone, String email) {
+	public Employee(String name, String phone, String email) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.name = name;
 		this.phone = phone;
 		this.email = email;
 	}
 	
-	public Employee(long id, String firstName, String lastName, String phone, String email) {
+	public Employee(long id, String name, String phone, String email) {
 		super();
 		this.id = id;
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.name = name;
 		this.phone = phone;
 		this.email = email;
 	}

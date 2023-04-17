@@ -16,6 +16,12 @@ import lombok.Data;
 @Data
 public class EmployeeLoginForm {
 	@NotEmpty
+	private String firstname;
+	
+	@NotEmpty
+	private String lastname;
+	
+	@NotEmpty
     private String username;
 
     @NotEmpty
