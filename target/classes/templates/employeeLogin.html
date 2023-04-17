@@ -7,6 +7,7 @@
  		* Apr 4, 2023
 -->
 <title>Employee Login Page</title>
+
 </head>
 
 <body>
@@ -14,7 +15,7 @@
     <div th:if="${param.error}">
         <div class="error-message">Invalid username or password.</div>
     </div>
-    <form th:action="@{/employeelogin}" method="post">
+    <form th:action="@{/employeeLogin}" method="post">
         <div>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>

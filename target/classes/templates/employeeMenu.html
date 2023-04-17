@@ -5,9 +5,29 @@
 <title>Employee Menu</title>
 </head>
 <body>
-<a href="viewAll">View all Animals</a>
-<a href="inputAnimal">Add new Animals</a>
-<a href="viewApplications">View Applications</a>
-<a href="viewAdopters">View Adopters</a>
+
+	<h1>Welcome, <span th:text="${employee.name}"></span>!</h1>
+    <div>
+        <h2>Your Information:</h2>
+        <ul>
+            <li><strong>Username:</strong> <span th:text="${employee.username}"></span></li>
+            <li><strong>Email: </strong> <span th:text="${employee.email}"></span></li>
+            <li><strong>Phone Number:</strong> <span th:text="${employee.phone}"></span></li>
+        </ul>
+    </div>
+    
+    <div>
+        <h2>Actions:</h2>
+        <ul>
+        	<li><a th:href="@{/viewAll}">View Available Animals</a></li>
+     		<li><a th:href="@{/inputAnimal}">Add new animals</a></li>
+     		<li><a th:href="@{/viewApplications}">View applications</a></li>
+     		<li><a th:href="@{/viewAdopters}">View adopters</a></li>
+            <li><a th:href="@{/updatePassword}">Update Password</a></li>
+            <li><a th:href="@{/updateAddress}">Update Address</a></li>
+            <li><a th:href="@{/employeeLogout}">Logout</a></li>
+        </ul>
+    </div>
+    
 </body>
 </html>

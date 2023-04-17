@@ -1,8 +1,12 @@
 package animal.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,11 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import animal.beans.Adopter;
 import animal.beans.AdopterLoginForm;
 import animal.beans.Animals;
+import animal.beans.Employee;
 import animal.beans.Address;
 import animal.beans.EmployeeLoginForm;
 import animal.repository.AdopterRepository;
 import animal.repository.AnimalRepository;
+import animal.repository.EmployeeRepository;
 //import net.bytebuddy.matcher.ModifierMatcher.Mode;
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class WebController {
@@ -29,6 +36,14 @@ public class WebController {
     
     @Autowired
     AdopterRepository adopterRepository;
+    
+    @Autowired
+    EmployeeRepository employeeRepository;
+    
+    
+    /**
+     * Adopters
+     */
     
     @GetMapping("/register")
     public String showAdopterRegistrationForm(Model model) {
@@ -46,38 +61,10 @@ public class WebController {
         adopterRepository.save(adopter);
         return "redirect:/adopterLogin";
     }
- 
     
-    //AMB 4/11 - added employee login webcontrollers
-    @GetMapping("/employeeLogin")
-    public String showEmployeeLoginForm(Model model) {
-    	model.addAttribute("employeeLogin", new EmployeeLoginForm());
-    	return "/employeeLogin";
-    }
-    
-    @PostMapping("/employeeLogin")
-    public String submitEmployeeLoginForm(@ModelAttribute("employeeLogin") @Valid EmployeeLoginForm employeeLoginForm, BindingResult result) {
-    	if(result.hasErrors()) {
-    		return "/employeeLogin";
-    	}
-    	//TODO: validate login and redirect to employee menu page
-    	return "redirect:/employeeMenu";
-    }
-    
-    @GetMapping("/registerEmployee")
-    public String showEmployeeRegistrationForm(Model model) {
-        return "/registerEmployee";
-    }
-
-//    @PostMapping("/registerEmployee")
-//    public String registerEmployee(@ModelAttribute("employee") @Valid Employee employee, BindingResult result) {
-//        if (result.hasErrors()) {
-//            return "/registerEmployee";
-//        }
-//        //TODO: save adopter to database and redirect to login page
-//        return "redirect:/employeeLogin";
-//    }
-    
+    /**
+     *  Animals:
+     */
     
     
     //AMB - Added animal methods for webcontroller
