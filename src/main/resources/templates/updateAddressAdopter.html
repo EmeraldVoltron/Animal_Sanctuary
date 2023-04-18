@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Address</title>
+    <script th:if="${showPopup}">
+        alert('Address updated successfully!');
+    </script>
+</head>
+<body>
+    <h2>Update Address</h2>
+    <form method="post" th:action="@{/adopter/updateAddress}">
+        <div>
+            <label for="street">Street:</label>
+            <input type="text" id="street" name="street" required>
+        </div>
+        <div>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+        </div>
+        <div>
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state" required>
+        </div>
+        <div>
+            <button type="submit">Update Address</button>
+            <a href="/adopterDashboard"><button type="button">Return to Dashboard</button></a>
+        </div>
+    </form>
+    <p th:text="${message}" th:if="${message}"></p>
+    <p th:text="${error}" th:if="${error}"></p>
+</body>
+</html>
