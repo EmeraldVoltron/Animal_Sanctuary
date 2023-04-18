@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import animal.beans.Address;
 import animal.beans.Adopter;
+import animal.beans.AdopterApplicationForm;
 import animal.beans.AdopterLoginForm;
 import animal.beans.Animals;
+import animal.beans.Employee;
 import animal.repository.AdopterRepository;
 import animal.repository.AnimalRepository;
 import jakarta.servlet.http.HttpSession;
@@ -139,5 +141,25 @@ public class AdopterWebController {
         model.addAttribute("showPopup", true);
         return "updateAddressAdopter";
     }
-
+    
+    @GetMapping("/application")
+    public String showApplicationForm(Model model) {
+    	model.addAttribute("applicationForm");
+    	return "application";
+    }
+    @PostMapping("/application")
+    public String submitApplication(@ModelAttribute("adopterApplicationForm") @Valid AdopterApplicationForm adopterApplicationForm, BindingResult result, HttpSession session) {
+    	if (result.hasErrors()) {
+    		return "application";
+    	}
+    	Optional<Adopter> optionalAdopter = adopterRepository.findByUsername(adopterApplicationForm.getName());
+    	if (optionalAdopter.isPresent()) {
+    		Adopter adopter = optionalAdopter.get();
+    		session.setAttribute("adopter", adopter);
+    		return "redirect:/adopterDashboard";
+    	} else {
+    		return "application";
+    	}
+    
+}
 }
