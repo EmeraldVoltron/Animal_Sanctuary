@@ -109,4 +109,15 @@ public class WebController {
         animalRepository.delete(a);
         return "redirect:/viewAll";
     }
+    
+    
+    //RPA - added method for adopters to view animals available
+    @GetMapping("/viewAvailableAnimals")
+    public String viewAvailableAnimals(Model model) {
+        if (animalRepository.findAll().isEmpty()) {
+            return "redirect:/adopterDashboard";
+        }
+        model.addAttribute("availableAnimals", animalRepository.findAll());
+        return "viewAvailableAnimals";
+    }
 }

@@ -14,25 +14,7 @@
         </ul>
     </div>
     <div>
-    <h2> Available Animals: </h2>
-
-<table>
-  <tr>
-    <th>Animal Id</th>
-    <th>Name</th>
-    <th>Species</th>
-    <th>Age</th>
-    <th>Good with Kids?</th>
-  </tr>
-  
-  <tr th:each="currentAnimal : ${availableAnimals}">
-    <td th:text="${currentAnimal.id}" />
-    <td th:text="${currentAnimal.name}" />
-    <td th:text="${currentAnimal.species}" />
-    <td th:text="${currentAnimal.age}" />
-    <td th:text="${currentAnimal.goodWithKids}" />
-  </tr>
-</table>
+    
 
     <a th:href="@{/application}">Adoption Application</a>
 	</div>
