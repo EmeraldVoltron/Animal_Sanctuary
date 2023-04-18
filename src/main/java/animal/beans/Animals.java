@@ -9,7 +9,9 @@ package animal.beans;
 
 import java.sql.Date;
 
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -60,5 +62,10 @@ public class Animals {
 	public Animals(String name) {
 		this.name = name;
 	}
+	
+	public Animals() {
+		
+	}
+	
 }
 	
