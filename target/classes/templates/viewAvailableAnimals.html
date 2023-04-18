@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- 
+ * @author riahl12- Riley Ahlrichs
+ * Apr 18, 2023
+ -->
+<head>
+<meta charset="UTF-8">
+<title>Available Animals</title>
+</head>
+<body>
+<h2> Available Animals For Adoption: </h2>
+<form>
+<table>
+<tr th:each="currentAnimal : ${availableAnimals}" >
+	<td> <p>Animal Id:</p> </td>
+	<td th:text="${currentAnimal.id}" />
+	<td> <p> | Name:</p> </td>
+	<td th:text="${currentAnimal.name}"  />
+	<td> <p> |  Species: </p> </td>
+	<td th:text="${currentAnimal.species}" />
+	<td> <p> | Age: </p> </td>
+	<td th:text="${currentAnimal.age}" />
+	<td> <p> | Arrival Date: </p> </td>
+	<td th:text="${currentAnimal.arrivalDate}" />
+	<td> <p> | Good with kids? </p> </td>
+	<td th:text="${currentAnimal.goodWithKids}" />
+	
+</tr>
+</table>
+	<div>
+		<a href="/adopterDashboard"><button type="button">Return to Dashboard</button></a>
+	</div>
+</form>
+</body>
+</html>
