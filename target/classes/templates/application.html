@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- 
+ * @author riahl12- Riley Ahlrichs
+ * Apr 18, 2023
+ -->
+<head>
+<meta charset="UTF-8">
+<title>Adoption Application</title>
+</head>
+<body>
+	<h1>Adoption Application</h1>
+	<form th:action="@{/application}" method="post">
+		<div>
+			<label for="name">Adopter Name:</label>
+			<input type="text" id="name" name="name" required>
+		</div>
+		<div>
+			<label for="home">Do you own your own home?:</label>
+			<input type="text" id="home" name="home" required>
+		</div>
+		<h3>Address</h3>
+		<div>
+			<label for="street">Street:</label>
+			<input type="text" id="street" name="street" required>
+		</div>
+		<div>
+			<label for="city">City:</label>
+			<input type="text" id="city" name="city" required>
+		</div>
+		<div>
+			<label for="state">State:</label>
+			<input type="text" id="state" name="state" required>
+		</div>
+		<div>
+			<label for="age">Your Age:</label>
+			<input type="text" id="age" name="age" required>
+		</div>
+		<div>
+			<label for="animal">Animal you want to adopt:</label>
+			<input type="text" id="animal" name="animal" required>
+		</div>
+		<button type="submit">Submit Form</button>
+	</form>
+	<div>
+		<a href="/adopterDashboard"><button type="button">Return to Dashboard</button></a>
+	</div>
+</body>
+</html>
