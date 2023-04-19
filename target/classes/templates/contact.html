@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us</title>
+	<link rel="stylesheet" href="style_dashboard.css">
+	<link rel="icon" href="Logo.svg" type="image/x-icon">
+	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
+</head>
+<header>
+		<nav>
+			<div class="container">
+				<ul>
+					<li><a th:href="@{/employeeMenu}">Home</a></li>
+					<li><a th:href="@{/inputAnimal}">Add Animal</a></li>
+					<li><a th:href="@{/viewAll}">View Animals</a></li>
+					<li><a th:href="@{/messages}">Messages</a></li>
+					<li><a th:href="@{/viewApplications}">View applications</a></li>
+     				<li><a th:href="@{/viewAdopters}">View adopters</a></li>
+					<li><a th:href="@{/employeeLogout}">Logout</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+<body>
+ <h1>Contact Us</h1>
+    <p style="text-align:center">Do you have any questions or feedback? Please fill out the form below and we'll get back to you as soon as possible.</p>
+    <form action="/contact" method="post">
+    	<div>
+    		<label for="name">Name:</label>
+    		<input type="text" id="name" name="name" required>
+    	</div>
+ 		<div>
+ 			<label for="email">Email: </label>
+ 			<input type="text" id="email" name="email" required>
+ 		</div>
+		<div>
+		  <label for="reason">Reason:</label>
+		  <select id="reason" name="reason" required>
+		    <option value="">Please select a reason</option>
+		    <option value="volunteer">Volunteer</option>
+		    <option value="donate">Donate</option>
+		    <option value="adoption">Adoption Information</option>
+		    <option value="request">Request Information of an Animal</option>
+		  </select>
+		</div>
+		<div id="animal-name" style="display: none;">
+  			<label for="animalName">Animal Name:</label>
+  			<input type="text" id="animalName" name="animalName">
+		</div>
+        <div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit">Send</button>
+    </form>
+    
+    <script>
+        // Show the animal name field if "Request Information of an Animal" is selected
+        var reasonDropdown = document.getElementById("reason");
+        var animalNameField = document.getElementById("animal-name");
+        
+        reasonDropdown.addEventListener("change", function() {
+            if (reasonDropdown.value === "request") {
+                animalNameField.style.display = "block";
+                document.getElementById("animalName").setAttribute("required", true);
+            } else {
+                animalNameField.style.display = "none";
+                document.getElementById("animalName").removeAttribute("required");
+            }
+        });
+    </script>
+</body>
+<footer>
+    <div class="container">
+        <div class="footer-left">
+            <h3>Contact Us</h3>
+            <br>
+            <p>123 Main Street</p>
+            <p>Des Moines, IA USA 12345</p>
+            <p>(123) 456-7890</p>
+            <p>info@animalsanctuary.com</p>
+        </div>
+        <div class="footer-center">
+            <h3>Hours of Operation</h3>
+            <br>
+            <p>Monday - Friday: 9am - 5pm</p>
+            <p>Saturday: 10am - 4pm</p>
+            <p>Sunday: Closed</p>
+        </div>
+        <div class="footer-right">
+            <img src="Logo_1.png" style="height: 250px;">
+        </div>
+        </div>
+         <div>
+    <p style="text-align: center;">@2023 Animal Sanctuary. All rights reserved.</p>
+    </div>
+</footer>
+
+</html> 
