@@ -5,6 +5,7 @@
  */
 package animal.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -20,8 +21,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import animal.beans.ContactMessage;
 import animal.beans.Employee;
 import animal.beans.EmployeeLoginForm;
+import animal.repository.ContactMessageRepository;
 import animal.repository.EmployeeRepository;
 import jakarta.servlet.http.HttpSession;
 
@@ -33,6 +36,9 @@ import jakarta.servlet.http.HttpSession;
 public class EmployeeWebController {
 	@Autowired
 	EmployeeRepository employeeRepository;
+	
+	@Autowired
+	private ContactMessageRepository contactMessageRepository;
 	
 	//AMB 4/11 - added employee login webcontrollers
     @GetMapping("/registerEmployee")
@@ -102,5 +108,29 @@ public class EmployeeWebController {
     public String employeeLogout(HttpSession session) {
         session.invalidate();
         return "redirect:/employeeLogin";
+    }
+    
+    @GetMapping("/messages")
+    public String viewMessages(Model model) {
+        List<ContactMessage> messages = contactMessageRepository.findAll();
+        model.addAttribute("messages", messages);
+        return "messages";
+    }
+
+    @GetMapping("/messages/{id}")
+    public String viewMessageDetails(@PathVariable("id") Long id, Model model) {
+        Optional<ContactMessage> message = contactMessageRepository.findById(id);
+        if (message.isPresent()) {
+            model.addAttribute("message", message.get());
+            return "message_details";
+        } else {
+            return "redirect:/messages";
+        }
+    }
+
+    @PostMapping("/messages/delete/{id}")
+    public String deleteMessage(@PathVariable("id") Long id) {
+        contactMessageRepository.deleteById(id);
+        return "redirect:/messages";
     }
 }

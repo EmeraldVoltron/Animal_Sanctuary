@@ -1,15 +1,92 @@
+<!-- Index: Completed -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Animal Sanctuary</title>
+	<meta charset="UTF-8">
+	<title>Animal Sanctuary</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="Logo.svg" type="image/x-icon">
+	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
 </head>
+<header>
+	<nav>
+		<div class="container">
+			<ul>
+				<li><a href="index.html">Home</a></li>
+				<li><a href="adopterLogin">Adopter Login</a></li>
+				<li><a href="employeeLogin">Employee Login</a></li>
+				<li><a href="#volunteer">Volunteer</a></li>
+				<li><a href="#donate">Donate</a></li>
+				<li><a href="contact">Contact Us</a></li>
+			</ul>
+		</div>
+	</nav>
+</header>
 <body>
-<h1>Welcome to the Animal Sanctuary!</h1>
+	<section id="cover-photo">
+		<h1>Welcome to Our Animal Sanctuary</h1>
+	</section>
 
-<a href="viewAll">View all Animals</a><br/>
-<a href="inputAnimal">Add a new Animal</a><br>
-<a href="adopterLogin">Adopter Login</a><br>
-<a href="employeeLogin">Employee Login</a><br>
+	<section id="about-us">
+		<h2>About Us</h2>
+			<p style="text-align:center;">At The Animal Sanctuary, we're dedicated to providing a safe and loving home for animals in need. Our shelter is staffed by a team of compassionate volunteers who work tirelessly to care for the animals in our care. We believe that every animal deserves a chance to thrive, which is why we provide veterinary care, nutritious food, and plenty of exercise and socialization opportunities. Whether you're looking to adopt a new furry friend, volunteer your time, or donate to our cause, we welcome you to join us in our mission to create a better world for animals.</p>
+	</section>
+
+	<section id="animals">
+		<h2>Adopted and Loved: Our success stories</h2>
+		<div class="carousel">
+			<img src="pet_1.jpg">
+			<img src="pet_2.jpg">
+			<img src="pet_3.jpg">
+			<img src="pet_6.jpg">
+			<img src="pet_7.jpg">
+		</div>
+	</section>
+
+	<!-- Volunteer section -->
+		<section id="volunteer">
+			<div>
+			<h2>Volunteer</h2>
+			<p>Volunteering at The Animal Sanctuary is a great way to make a difference in the lives of animals in need while also gaining valuable experience and making new friends. We offer a variety of volunteer opportunities, including dog-walking, cat socialization, administrative work, and event planning. No matter what your skills or interests may be, we have a role for you to play. All volunteers receive training and support from our staff, and we ask that you commit to a regular schedule of at least 4 hours per week. If you're interested in volunteering, please click the button below to contact our volunteer coordinator.</p>
+			<a href="contact" class="btn">Contact Us</a>
+			</div>
+			<img src="dog.jpg" alt="Dog Image">
+		</section>
+
+	<!-- Donate section -->
+		<section id="donate">
+			<div>
+			<h2>Donate</h2>
+			<p>Your donation can make a big difference in the lives of the animals at The Animal Sanctuary. With your support, we can provide veterinary care, nutritious food, and comfortable shelter for animals in need. We appreciate donations of any size, and every dollar counts. To make a donation, please click the button below.</p>
+			<a href="contact" class="btn-donate">Donate Now</a>
+			</div>
+			<img src="cat.jpg" alt="Cat Image">
+		</section>
 </body>
+<footer>
+    <div class="container">
+        <div class="footer-left">
+            <h3>Contact Us</h3>
+            <br>
+            <p>123 Main Street</p>
+            <p>Des Moines, IA USA 12345</p>
+            <p>(123) 456-7890</p>
+            <p>info@animalsanctuary.com</p>
+        </div>
+        <div class="footer-center">
+            <h3>Hours of Operation</h3>
+            <br>
+            <p>Monday - Friday: 9am - 5pm</p>
+            <p>Saturday: 10am - 4pm</p>
+            <p>Sunday: Closed</p>
+        </div>
+        <div class="footer-right">
+            <img src="Logo_1.png" style="height: 250px;">
+        </div>
+        
+    </div>
+   <div>
+    <p style="text-align: center;">@2023 Animal Sanctuary. All rights reserved.</p>
+    </div>
+</footer>
 </html>
