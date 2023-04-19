@@ -1,5 +1,6 @@
 package animal.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -141,6 +142,7 @@ public class AdopterWebController {
         model.addAttribute("showPopup", true);
         return "updateAddressAdopter";
     }
+
     
     @GetMapping("/application")
     public String showApplicationForm(Model model) {
@@ -160,6 +162,21 @@ public class AdopterWebController {
     	} else {
     		return "application";
     	}
+    }
+
+
+
+    @GetMapping("/viewAvailableAnimals")
+    public String showAvailableAnimals(@RequestParam(required = false) String search, Model model) {
+        List<Animals> animals = new ArrayList<>();
+        if (search == null || search.isEmpty()) {
+            animals = animalRepository.findByStatus("Available");
+        } else {
+            animals = animalRepository.findByNameContainingIgnoreCaseAndStatus(search, "Available");
+        }
+        model.addAttribute("animals", animals);
+        return "viewAvailableAnimals";
     
-}
+
+    }
 }
