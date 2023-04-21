@@ -21,12 +21,8 @@ import animal.beans.Animals;
  */
 //@Repository
 public interface AnimalRepository extends JpaRepository<Animals, Long>{
-<<<<<<< Updated upstream
+
 
 	//List<Animals> findByAnimalColor(String color);
 
-=======
-	
-	//List<Animals> findByAnimalColor(String color);
->>>>>>> Stashed changes
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import animal.beans.Address;
 import animal.beans.Adopter;
+import animal.beans.AdopterApplicationForm;
 import animal.beans.AdopterLoginForm;
 import animal.beans.Animals;
 import animal.repository.AdopterRepository;
@@ -152,11 +153,7 @@ public class AdopterWebController {
     	}
     }
 
-<<<<<<< Updated upstream
 
-
-=======
->>>>>>> Stashed changes
 //    @GetMapping("/viewAvailableAnimals")
 //    public String showAvailableAnimals(@RequestParam(required = false) String search, Model model) {
 //        List<Animals> animals = new ArrayList<>();
@@ -167,12 +164,7 @@ public class AdopterWebController {
 //        }
 //        model.addAttribute("animals", animals);
 //        return "viewAvailableAnimals";
-<<<<<<< Updated upstream
-//  }
-
-=======
+//	}
 //    
 //
-//    }
->>>>>>> Stashed changes
-}
+ }

@@ -21,13 +21,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-<<<<<<< Updated upstream
-=======
-import animal.beans.Address;
-import animal.beans.Adopter;
-import animal.beans.AdopterApplicationForm;
-import animal.beans.ContactMessage;
->>>>>>> Stashed changes
 import animal.beans.Employee;
 import animal.beans.EmployeeLoginForm;
 import animal.repository.EmployeeRepository;
@@ -111,8 +104,6 @@ public class EmployeeWebController {
         session.invalidate();
         return "redirect:/employeeLogin";
     }
-<<<<<<< Updated upstream
-=======
     
     @GetMapping("/updatePasswordEmployee")
     public String showEmployeeUpdatePasswordForm(Model model, HttpSession session) {
@@ -196,6 +187,5 @@ public class EmployeeWebController {
         model.addAttribute("showPopup", true);
         return "updatePhoneEmployee";
     }
-    
->>>>>>> Stashed changes
+  
 }
