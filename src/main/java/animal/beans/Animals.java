@@ -34,6 +34,7 @@ public class Animals {
 	private int age;
 	private Date arrivalDate;
 	private boolean goodWithKids;
+	private String animalColor;
 	
 	
 	public Animals(String name, String species, int age) {
@@ -61,10 +62,6 @@ public class Animals {
 	
 	public Animals(String name) {
 		this.name = name;
-	}
-	
-	public Animals() {
-		
 	}
 	
 }

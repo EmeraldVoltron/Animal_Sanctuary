@@ -1,16 +1,15 @@
-
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Add new Animal</title>
-	<link rel="stylesheet" href="style_dashboard.css">
-	<link rel="icon" href="Logo.svg" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>Update Phone</title>
+    <link rel="stylesheet" type="text/css" href="style_dashboard.css">
+    <link rel="icon" href="Logo.svg" type="image/x-icon">
 	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
+    <script th:if="${showPopup}">
+        alert('Phone updated successfully!');
+    </script>
 </head>
-
-<body>
 
 <header>
 		<nav>
@@ -26,31 +25,22 @@
 				</ul>
 			</div>
 		</nav>
-
 </header>
-
-<!-- 
- * @author amboggs- Abigail Boggs
- * Apr 4, 2023
- -->
- 
-
-<form th:object="${newAnimal}" th:action="@{/inputAnimal}" method='POST'>
- <h2>Input a new Animal: </h2>
-<input type="hidden" th:field="*{id}" />
-Animal Name: <input name="animalName" size="20" th:field="*{name}"> <br />
-Breed: <input name="breed" size="20" th:field="*{breed}"><br />
-Species: <input name="species" size="20" th:field="*{species}"><br />
-Age: <input name="age" size="20" th:field="*{age}"><br />
-Arrival Date: <input type="date" name="arrivalDate" size="10" th:field="*{arrivalDate}"> <br />
-Good with kids: <input name="goodWithKids" size="20" th:field="*{goodWithKids}"><br />
-
-<input name="submit" type="submit" value="submit" />
-</form>
-
-
+<body>
+    <h2 style="text-align:center">Update Phone</h2>
+   <form method="post" th:action="@{/employee/updatePhone}">
+        <div>
+            <label for="newPhone">New Phone:</label>
+            <input type="text" id="newPhone" name="newPhone" required>
+        </div>
+        <div>
+            <button type="submit">Update Phone</button>
+            
+        </div>
+    </form>
+    <p th:text="${message}" th:if="${message}"></p>
+    <p th:text="${error}" th:if="${error}"></p>
 </body>
-
 <footer>
     <div class="container">
         <div class="footer-left">

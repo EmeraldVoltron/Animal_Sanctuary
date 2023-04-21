@@ -29,8 +29,4 @@ public class AdopterApplicationForm {
 	private String age;
 	@NotEmpty
 	private String adoptee;
-	
-	
-	
-
 }

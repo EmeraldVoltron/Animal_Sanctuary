@@ -11,9 +11,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 //import org.springframework.stereotype.Repository;
 
-import animal.beans.Adopter;
 import animal.beans.Animals;
-import animal.beans.Employee;
 
 
 
@@ -24,6 +22,7 @@ import animal.beans.Employee;
  */
 //@Repository
 public interface AnimalRepository extends JpaRepository<Animals, Long>{
-	
-	List<Animals> findByAnimalColor(String color);
+
+//List<Animals> findByAnimalColor(String color);
+
 }
