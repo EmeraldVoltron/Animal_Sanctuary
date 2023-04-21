@@ -1,0 +1,148 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+nav {
+	background-color: #333;
+	color: white;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+}
+
+nav ul li {
+	margin: 0 10px;
+}
+
+nav ul li a {
+	color: white;
+	text-decoration: none;
+	font-size: 18px;
+	padding: 10px;
+}
+body {
+    width: 75%;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 50px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 50px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 18px;
+    width: 300px;
+}
+
+button[type="submit"] {
+    background-color: #808040;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.register-link {
+    margin: 20px;
+    text-align: center;
+}
+
+.register-link a {
+    color: #808040;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+footer {
+    background-color: #333;
+    color: white;
+    padding: 50px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-left, .footer-center, .footer-right {
+    flex-basis: 30%;
+}
+
+.footer-left p, .footer-center p, .footer-right a {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.footer-right a {
+    margin-right: 10px;
+    color: white;
+    font-size: 24px;
+}
+
+.footer-right a:hover {
+    color: #ccc;
+}
+
+.fab {
+    cursor: pointer;
+}
+section {
+	margin: 50px 0;
+	padding: 0 50px;
+}
+
+section h2 {
+	font-size: 36px;
+	margin-bottom: 20px;
+}
+
+section ul {
+	list-style: none;
+	font-size: 18px;
+	line-height: 1.5;
+	margin-bottom: 20px;
+	padding:5px;
+}
+
+section label {
+	display: block;
+	font-size: 18px;
+	margin-bottom: 10px;
+}

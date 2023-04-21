@@ -1,5 +1,6 @@
 package animal.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ import animal.beans.Adopter;
 import animal.beans.AdopterApplicationForm;
 import animal.beans.AdopterLoginForm;
 import animal.beans.Animals;
+import animal.beans.Employee;
 import animal.repository.AdopterRepository;
 import animal.repository.AnimalRepository;
 import jakarta.servlet.http.HttpSession;
@@ -87,6 +89,53 @@ public class AdopterWebController {
         return "redirect:/adopterLogin";
     }
     
+    @GetMapping("/updatePasswordAdopter")
+    public String showUpdatePasswordForm(Model model, HttpSession session) {
+
+        Adopter adopter = (Adopter) session.getAttribute("adopter");
+        if (adopter == null) {
+            return "redirect:/adopterLogin";
+        }
+
+        if (!adopter.getPassword().equals(oldPassword)) {
+            model.addAttribute("error", "Incorrect old password");
+            model.addAttribute("adopter", adopter);
+            return "adopterDashboard";
+        }
+        adopter.setPassword(newPassword);
+        adopterRepository.save(adopter);
+        session.setAttribute("adopter", adopter);
+        model.addAttribute("adopter", adopter);
+        model.addAttribute("message", "Password updated successfully");
+        model.addAttribute("showPopup", true);
+        return "updatePasswordAdopter";
+    }
+    @GetMapping("/updateAddressAdopter")
+    public String showUpdateAddressForm(Model model, HttpSession session) {
+    	Adopter adopter = (Adopter) session.getAttribute("adopter");
+    	if (adopter == null) {
+    		return "redirect:/adopterLogin";
+    }
+    	model.addAttribute("adopter", adopter);
+    	model.addAttribute("address", adopter.getAddress());
+    	return "updateAddressAdopter";
+    }
+    @PostMapping("/adopter/updateAddress")
+    public String updateAdopterAddress(@ModelAttribute Address address, HttpSession session, Model model) {
+        Adopter adopter = (Adopter) session.getAttribute("adopter");
+        if (adopter == null) {
+            return "redirect:/adopterLogin";
+        }
+        adopter.setAddress(address);
+        adopterRepository.save(adopter);
+        session.setAttribute("adopter", adopter);
+        model.addAttribute("adopter", adopter);
+        model.addAttribute("message", "Address updated successfully");
+        model.addAttribute("showPopup", true);
+        return "updateAddressAdopter";
+    }
+
+    
     @PostMapping("/adopter/updatePassword")
     public String updateAdopterPassword(@RequestParam String oldPassword, @RequestParam String newPassword, HttpSession session, Model model) {
         Adopter adopter = (Adopter) session.getAttribute("adopter");
@@ -131,13 +180,12 @@ public class AdopterWebController {
         return "updateAddressAdopter";
     }
 
-    
     @GetMapping("/application")
     public String showApplicationForm(Model model) {
     	model.addAttribute("applicationForm");
     	return "application";
     }
-    
+
     @PostMapping("/application")
     public String submitApplication(@ModelAttribute("adopterApplicationForm") @Valid AdopterApplicationForm adopterApplicationForm, BindingResult result, HttpSession session) {
     	if (result.hasErrors()) {
@@ -154,6 +202,7 @@ public class AdopterWebController {
     }
 
 
+
 //    @GetMapping("/viewAvailableAnimals")
 //    public String showAvailableAnimals(@RequestParam(required = false) String search, Model model) {
 //        List<Animals> animals = new ArrayList<>();
@@ -168,3 +217,4 @@ public class AdopterWebController {
 //    
 //
  }
+

@@ -5,6 +5,7 @@
  */
 package animal.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,7 +23,6 @@ import animal.beans.Animals;
 //@Repository
 public interface AnimalRepository extends JpaRepository<Animals, Long>{
 
-
-	//List<Animals> findByAnimalColor(String color);
+//List<Animals> findByAnimalColor(String color);
 
 }

@@ -5,10 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Add new Animal</title>
+	<link rel="stylesheet" href="style_dashboard.css">
+	<link rel="icon" href="Logo.svg" type="image/x-icon">
+	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
 </head>
-<<<<<<< Updated upstream
+
 <body>
-=======
+
 <header>
 		<nav>
 			<div class="container">
@@ -23,16 +26,17 @@
 				</ul>
 			</div>
 		</nav>
+
 </header>
->>>>>>> Stashed changes
 
 <!-- 
  * @author amboggs- Abigail Boggs
  * Apr 4, 2023
  -->
  
- <h2>Input a new Animal: </h2>
+
 <form th:object="${newAnimal}" th:action="@{/inputAnimal}" method='POST'>
+ <h2>Input a new Animal: </h2>
 <input type="hidden" th:field="*{id}" />
 Animal Name: <input name="animalName" size="20" th:field="*{name}"> <br />
 Breed: <input name="breed" size="20" th:field="*{breed}"><br />
@@ -43,7 +47,34 @@ Good with kids: <input name="goodWithKids" size="20" th:field="*{goodWithKids}">
 
 <input name="submit" type="submit" value="submit" />
 </form>
-<a href="../viewAll">View all Animals</a>
+
 
 </body>
+
+<footer>
+    <div class="container">
+        <div class="footer-left">
+            <h3>Contact Us</h3>
+            <br>
+            <p>123 Main Street</p>
+            <p>Des Moines, IA USA 12345</p>
+            <p>(123) 456-7890</p>
+            <p>info@animalsanctuary.com</p>
+        </div>
+        <div class="footer-center">
+            <h3>Hours of Operation</h3>
+            <br>
+            <p>Monday - Friday: 9am - 5pm</p>
+            <p>Saturday: 10am - 4pm</p>
+            <p>Sunday: Closed</p>
+        </div>
+        <div class="footer-right">
+            <img src="Logo_1.png" style="height: 250px;">
+        </div>
+        
+    </div>
+   <div>
+    <p style="text-align: center;">@2023 Animal Sanctuary. All rights reserved.</p>
+    </div>
+</footer>
 </html>
