@@ -152,8 +152,11 @@ public class AdopterWebController {
     	}
     }
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 //    @GetMapping("/viewAvailableAnimals")
 //    public String showAvailableAnimals(@RequestParam(required = false) String search, Model model) {
 //        List<Animals> animals = new ArrayList<>();
@@ -164,6 +167,12 @@ public class AdopterWebController {
 //        }
 //        model.addAttribute("animals", animals);
 //        return "viewAvailableAnimals";
+<<<<<<< Updated upstream
 //  }
 
+=======
+//    
+//
+//    }
+>>>>>>> Stashed changes
 }
