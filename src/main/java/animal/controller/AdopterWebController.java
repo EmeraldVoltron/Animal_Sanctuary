@@ -24,6 +24,7 @@ import animal.beans.AdopterApplicationForm;
 import animal.beans.AdopterLoginForm;
 import animal.beans.Animals;
 import animal.beans.Employee;
+
 import animal.repository.AdopterRepository;
 import animal.repository.AnimalRepository;
 import jakarta.servlet.http.HttpSession;
@@ -36,6 +37,8 @@ public class AdopterWebController {
     
     @Autowired
     private AnimalRepository animalRepository;
+    
+   
    
 
     @GetMapping("/adopters/{username}")
@@ -202,19 +205,5 @@ public class AdopterWebController {
     }
 
 
-
-//    @GetMapping("/viewAvailableAnimals")
-//    public String showAvailableAnimals(@RequestParam(required = false) String search, Model model) {
-//        List<Animals> animals = new ArrayList<>();
-//        if (search == null || search.isEmpty()) {
-//            animals = animalRepository.findByStatus("Available");
-//        } else {
-//            animals = animalRepository.findByNameContainingIgnoreCaseAndStatus(search, "Available");
-//        }
-//        model.addAttribute("animals", animals);
-//        return "viewAvailableAnimals";
-//	}
-//    
-//
- }
+}
 
