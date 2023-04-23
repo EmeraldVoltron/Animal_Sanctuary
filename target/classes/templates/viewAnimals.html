@@ -49,6 +49,10 @@
 	<td th:text="${currentAnimal.arrivalDate}" />
 	<td> <p> | Good with kids? </p> </td>
 	<td th:text="${currentAnimal.goodWithKids}" />
+		<td> <p> | Color: </p> </td>
+	<td th:text="${currentAnimal.color}" />
+	<td> <p> | Sex: </p> </td>
+	<td th:text="${currentAnimal.sex}" />
 	
 	<td><a th:href="@{/edit/{id}(id=${currentAnimal.id})}">Edit</a></td>
 	<td><a th:href="@{/delete/{id}(id=${currentAnimal.id})}">Delete</a></td>

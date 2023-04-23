@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Search</title>
+</head>
+<body>
+	<h1>Animal Sanctuary Search</h1>
+	<form method="post" th:action="@{/search}">
+	<p>Search by : Color, Breed, or Species</p>
+		<label for="query">Search for:</label>
+		<input type="text" id="query" name="query" required>
+		<button type="submit">Search</button>
+	</form>
+</body>
+</html>

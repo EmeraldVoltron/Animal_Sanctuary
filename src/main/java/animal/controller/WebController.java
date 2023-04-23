@@ -1,5 +1,7 @@
 package animal.controller;
 
+import java.util.List;
+import org.springframework.web.servlet.ModelAndView;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -119,5 +121,10 @@ public class WebController {
         }
         model.addAttribute("availableAnimals", animalRepository.findAll());
         return "viewAvailableAnimals";
-    }
+    }   
+    
+
+
+
+
 }
