@@ -43,12 +43,14 @@ private String sex;
 private String search;
 
 
-public Animals(String name, String species, Integer age) {
-    this.name = name;
-    this.species = species;
-    this.age = age;
-}
-
+	
+	public Animals(String name, String species, int age) {
+		super();
+		this.name = name;
+		this.species = species;
+		this.age = age;
+	}
+	
 public Animals(String name, String breed, String species, Integer age, Date arrivalDate, Boolean goodWithKids, String color, String sex) {
     this.name = name;
     this.breed = breed;

@@ -1,17 +1,16 @@
-<!-- 
- * @author amboggs- Abigail Boggs
- * Apr 4, 2023
- -->
- 
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Add new Animal</title>
-	<link rel="stylesheet" href="style_dashboard.css">
-	<link rel="icon" href="Logo.svg" type="image/x-icon">
+    <meta charset="UTF-8">
+    <title>Update Email</title>
+    <link rel="stylesheet" type="text/css" href="style_dashboard.css">
+    <link rel="icon" href="Logo.svg" type="image/x-icon">
 	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
+    <script th:if="${showPopup}">
+        alert('Email updated successfully!');
+    </script>
 </head>
+
 <header>
 		<nav>
 			<div class="container">
@@ -28,25 +27,21 @@
 		</nav>
 </header>
 
-<!-- Add Color, and Sex -->
-<form th:object="${newAnimal}" th:action="@{/inputAnimal}" method='POST'>
- <h2>Input a new Animal: </h2>
-<input type="hidden" th:field="*{id}" />
-Animal Name: <input name="animalName" size="20" th:field="*{name}"> <br />
-Breed: <input name="breed" size="20" th:field="*{breed}"><br />
-Species: <input name="species" size="20" th:field="*{species}"><br />
-Age: <input name="age" size="20" th:field="*{age}"><br />
-Arrival Date: <input type="date" name="arrivalDate" size="10" th:field="*{arrivalDate}"> <br />
-Good with kids: <input name="goodWithKids" size="20" th:field="*{goodWithKids}"><br />
-Color: <input name="color" size="20" th:field="*{color}"><br />
-Sex: <input name="sex" size="20" th:field="*{sex}"><br />
-
-<input name="submit" type="submit" value="submit" />
-</form>
-
-
+<body>
+    <h2 style="text-align:center">Update Email</h2>
+   <form method="post" th:action="@{/employee/updateEmail}">
+        <div>
+            <label for="newEmail">New Email:</label>
+            <input type="text" id="newEmail" name="newEmail" required>
+        </div>
+        <div>
+            <button type="submit">Update Email</button>
+            
+        </div>
+    </form>
+    <p th:text="${message}" th:if="${message}"></p>
+    <p th:text="${error}" th:if="${error}"></p>
 </body>
-
 <footer>
     <div class="container">
         <div class="footer-left">
