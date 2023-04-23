@@ -1,8 +1,5 @@
-<!-- 
- * @author amboggs- Abigail Boggs
- * Apr 4, 2023
- -->
- 
+
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -27,6 +24,12 @@
 			</div>
 		</nav>
 </header>
+
+<!-- 
+ * @author amboggs- Abigail Boggs
+ * Apr 4, 2023
+ -->
+ 
 
 <!-- Add Color, and Sex -->
 <form th:object="${newAnimal}" th:action="@{/inputAnimal}" method='POST'>
