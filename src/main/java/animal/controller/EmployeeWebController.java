@@ -172,18 +172,18 @@ public class EmployeeWebController {
     }
     
     @PostMapping("/employee/updateEmail")
-    public String updateEmployeeEmail(@ModelAttribute String email, HttpSession session, Model model) {
+    public String updateEmployeeEmail(@RequestParam String newEmail, HttpSession session, Model model) {
         Employee employee = (Employee) session.getAttribute("employee");
         if (employee == null) {
             return "redirect:/employeeLogin";
         }
-        employee.setEmail(email);
+        employee.setEmail(newEmail);
         employeeRepository.save(employee);
         session.setAttribute("employee", employee);
         model.addAttribute("employee", employee);
         model.addAttribute("message", "Email updated successfully");
         model.addAttribute("showPopup", true);
-        return "updateEmailEmployee";
+        return "redirect:/employeeMenu";
     }
     
     /**
@@ -202,18 +202,18 @@ public class EmployeeWebController {
     }
     
     @PostMapping("/employee/updatePhone")
-    public String updateAdopterPhone(@ModelAttribute String phone, HttpSession session, Model model) {
+    public String updateEmployeePhone(@RequestParam String newPhone, HttpSession session, Model model) {
         Employee employee = (Employee) session.getAttribute("employee");
         if (employee == null) {
             return "redirect:/employeeLogin";
         }
-        employee.setPhone(phone);
+        employee.setPhone(newPhone);
         employeeRepository.save(employee);
         session.setAttribute("employee", employee);
         model.addAttribute("employee", employee);
-        model.addAttribute("message", "Email updated successfully");
+        model.addAttribute("message", "Phone number updated successfully");
         model.addAttribute("showPopup", true);
-        return "updatePhoneEmployee";
+        return "redirect:/employeeMenu";
     }
 
     /**
