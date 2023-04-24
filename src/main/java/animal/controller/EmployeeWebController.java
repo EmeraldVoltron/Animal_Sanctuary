@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import animal.beans.Adopter;
 import animal.beans.ContactMessage;
 import animal.beans.Employee;
 import animal.beans.EmployeeLoginForm;
+import animal.repository.AdopterRepository;
 import animal.repository.ContactMessageRepository;
 import animal.repository.EmployeeRepository;
 import jakarta.servlet.http.HttpSession;
@@ -40,6 +42,9 @@ public class EmployeeWebController {
 	
 	@Autowired
 	private ContactMessageRepository contactMessageRepository;
+	
+	@Autowired
+	AdopterRepository adopterRepository;
 	
 	
 	@GetMapping("/employees/{username}")
@@ -65,6 +70,7 @@ public class EmployeeWebController {
         return "/registerEmployee";
     }
 
+    //registers employee by saving the employee fields into the repo
     @PostMapping("/registerEmployee")
     public String submitEmployeeRegistrationForm(@ModelAttribute("employee") @Valid Employee employee, BindingResult result){
     	if(result.hasErrors()) {
@@ -103,7 +109,8 @@ public class EmployeeWebController {
             return "employeeLogin";
         }
     }
-     
+    
+    //show the employee menu
     @GetMapping("/employeeMenu")
     public String showEmployeeMenu(Model model, HttpSession session) {
         Employee employee = (Employee) session.getAttribute("employee");
@@ -114,7 +121,7 @@ public class EmployeeWebController {
         return "employeeMenu";
     }
     
-    
+    //logout from session
     @GetMapping("/employeeLogout")
     public String employeeLogout(HttpSession session) {
         session.invalidate();
@@ -135,6 +142,8 @@ public class EmployeeWebController {
         return "updatePasswordEmployee";
     }
     
+    //get the old password and new password. Make sure the oldpassword matches the old password
+    //then save the new password to the employee and safe to repo. 
     @PostMapping("/employee/updatePassword")
     public String updateEmployeePassword(@RequestParam String oldPassword, @RequestParam String newPassword, HttpSession session, Model model) {
     	Employee employee = (Employee) session.getAttribute("employee");
@@ -171,6 +180,7 @@ public class EmployeeWebController {
     	return "updateEmailEmployee";
     }
     
+    //get new email and update current employee's email and save to repo
     @PostMapping("/employee/updateEmail")
     public String updateEmployeeEmail(@RequestParam String newEmail, HttpSession session, Model model) {
         Employee employee = (Employee) session.getAttribute("employee");
@@ -201,6 +211,7 @@ public class EmployeeWebController {
     	return "updatePhoneEmployee";
     }
     
+    //get the phone number and update the employee's number and save to repo
     @PostMapping("/employee/updatePhone")
     public String updateEmployeePhone(@RequestParam String newPhone, HttpSession session, Model model) {
         Employee employee = (Employee) session.getAttribute("employee");
@@ -239,9 +250,30 @@ public class EmployeeWebController {
         }
     }
 
+    //delete messages
     @PostMapping("/messages/delete/{id}")
     public String deleteMessage(@PathVariable("id") Long id) {
         contactMessageRepository.deleteById(id);
         return "redirect:/messages";
+    }
+    
+    /**
+     * View adopters from employee view
+     */
+    @GetMapping("/viewAdopters")
+    public String viewAdoptersList(Model model) {
+    	if(adopterRepository.findAll().isEmpty()) {
+    		model.addAttribute("message", "No adopters in system.");
+    	}
+        model.addAttribute("adopters", adopterRepository.findAll());
+        return "adoptersList";
+    }
+    
+    //get the adopter id and delete it 
+    @GetMapping("/deleteAdopter/{id}")
+    public String deleteAdopter(@PathVariable("id") Long id) {
+        Adopter a = adopterRepository.findById(id).orElse(null);
+        adopterRepository.delete(a);
+        return "redirect:/viewAdopters";
     }
 }
