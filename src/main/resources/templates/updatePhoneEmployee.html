@@ -2,12 +2,19 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <!-- Author: Abigail Boggs -->
     <title>Update Phone</title>
     <link rel="stylesheet" type="text/css" href="style_dashboard.css">
     <link rel="icon" href="Logo.svg" type="image/x-icon">
 	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
-    <script th:if="${showPopup}">
-        alert('Phone number updated successfully!');
+    <script type="text/javascript">
+        function checkForm(form){
+   			if(form.newPhone.value.length > 12){
+  				alert( "Invalid phone number, try again.");
+  				form.newPhone.focus();
+  				return false;
+    		}
+        }
     </script>
 </head>
 
@@ -28,7 +35,7 @@
 </header>
 <body>
     <h2 style="text-align:center">Update Phone</h2>
-   <form method="post" th:action="@{/employee/updatePhone}">
+   <form method="post" th:action="@{/employee/updatePhone}" name="form" onsubmit="return checkForm(form);">
         <div>
             <label for="newPhone">New Phone:</label>
             <input type="text" id="newPhone" name="newPhone" required>
@@ -41,6 +48,7 @@
     <p th:text="${message}" th:if="${message}"></p>
     <p th:text="${error}" th:if="${error}"></p>
 </body>
+
 <footer>
     <div class="container">
         <div class="footer-left">

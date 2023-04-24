@@ -7,6 +7,20 @@
  		* Apr 4, 2023
 -->
 	<title>Employee Login Page</title>
+	<script type = "text/javascript">
+		function checkForm(form){
+			if(form.username.value == ""){
+				alert( "Please enter your username.");
+				form.username.focus();
+				return false;
+			}
+			if(form.password.value == ""){
+				alert( "Please enter your password.");
+				form.password.focus();
+				return false;
+			}
+		}
+	</script>
 	<link rel="stylesheet" href="style_logins.css">
 	<link rel="icon" href="Logo.svg" type="image/x-icon">
 	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
@@ -31,7 +45,7 @@
     <div th:if="${param.error}">
         <div class="error-message">Invalid username or password.</div>
     </div>
-    <form th:action="@{/employeeLogin}" method="post">
+    <form th:action="@{/employeeLogin}" method="post" name = "form" onsubmit="return checkForm(this);">
         <div>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -42,9 +56,11 @@
         </div>
         <button type="submit">Login</button>
     </form>
+    
     <div class="register-link">
         <a th:href="@{/registerEmployee}">Don't have an account? Register here.</a>
     </div>
+    
 </body>
 <footer>
     <div class="container">

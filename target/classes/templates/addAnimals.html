@@ -8,6 +8,29 @@
 	<link rel="stylesheet" href="style_dashboard.css">
 	<link rel="icon" href="Logo.svg" type="image/x-icon">
 	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
+
+	<script type="text/javascript">
+		function checkForm(form){
+			if(form.age.value < 0 || isNaN(form.age.value)){
+				alert("Invalid age, please try again.");
+				form.age.focus();
+				return false;
+			}
+			
+			if(form.goodWithKids.value != "true" && form.goodWithKids.value !="false"){
+				alert("Invalid value for good with kids, please enter true or false");
+				form.goodWithKids.focus();
+				return false;
+			}
+			
+			if(form.sex.value != "female" && form.sex.value != "male"){
+				alert("Invalid input for sex, please enter male or female.");
+				form.sex.focus();
+				return false;
+			}
+		}
+	</script>
+
 </head>
 <header>
 		<nav>
@@ -32,19 +55,19 @@
  
 
 <!-- Add Color, and Sex -->
-<form th:object="${newAnimal}" th:action="@{/inputAnimal}" method='POST'>
- <h2>Input a new Animal: </h2>
-<input type="hidden" th:field="*{id}" />
-Animal Name: <input name="animalName" size="20" th:field="*{name}"> <br />
-Breed: <input name="breed" size="20" th:field="*{breed}"><br />
-Species: <input name="species" size="20" th:field="*{species}"><br />
-Age: <input name="age" size="20" th:field="*{age}"><br />
-Arrival Date: <input type="date" name="arrivalDate" size="10" th:field="*{arrivalDate}"> <br />
-Good with kids: <input name="goodWithKids" size="20" th:field="*{goodWithKids}"><br />
-Color: <input name="color" size="20" th:field="*{color}"><br />
-Sex: <input name="sex" size="20" th:field="*{sex}"><br />
+<form th:object="${newAnimal}" th:action="@{/inputAnimal}" method='POST' name="form" onsubmit="return checkForm(this);">
+ 	<h2>Input a new Animal: </h2>
+	<input type="hidden" th:field="*{id}" />
+	Animal Name: <input name="animalName" size="20" th:field="*{name}" required> <br />
+	Breed: <input name="breed" size="20" th:field="*{breed}" required><br />
+	Species: <input name="species" size="20" th:field="*{species}" required><br />
+	Age: <input name="age" size="20" th:field="*{age}" required><br />
+	Arrival Date: <input type="date" name="arrivalDate" size="10" th:field="*{arrivalDate}" required> <br />
+	Good with kids: <input name="goodWithKids" size="20" th:field="*{goodWithKids}" required><br />
+	Color: <input name="color" size="20" th:field="*{color}" required><br />
+	Sex: <input name="sex" size="20" th:field="*{sex}" required><br />
 
-<input name="submit" type="submit" value="submit" />
+	<input name="submit" type="submit" value="submit" />
 </form>
 
 

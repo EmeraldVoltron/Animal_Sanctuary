@@ -6,6 +6,28 @@
 	<link rel="stylesheet" href="style_register.css">
 	<link rel="icon" href="Logo.svg" type="image/x-icon">
 	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
+	
+	<script type="text/javascript">
+		function checkForm(form){
+			if(form.password.value != form.confirmPassword.value){
+				alert("Passwords do not match, try again.");
+				form.password.focus();
+				return false;
+			}
+			
+			if(form.age.value < 0 || isNaN(form.age.value)){
+				alert("Invalid age, try again.");
+				form.age.focus();
+				return false;
+			}
+			
+			if(form.phone.value.length != 12){
+  				alert( "Invalid phone number, try again.");
+  				form.phone.focus();
+  				return false;
+    		}
+		}
+	</script>
 </head>
 <header>
 	<nav>
@@ -23,7 +45,7 @@
 </header>
 <body>
     <h1>Register Employee</h1>
-    <form th:object="${employee}" th:action="@{/registerEmployee}" method="post">
+    <form th:object="${employee}" th:action="@{/registerEmployee}" method="post" name="form" onsubmit="return checkForm(this);">
     	<div>
     		<label for="name">Name:</label>
     		<input type="text" id="name" name="name" required>

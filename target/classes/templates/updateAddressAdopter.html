@@ -8,6 +8,25 @@
 	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
     <script th:if="${showPopup}">
         alert('Address updated successfully!');
+      
+        function checkForm(form){
+    		if(form.street.value == ""){
+   				alert( "Please enter your street.");
+   				form.street.focus();
+   				return false;
+   			}
+    		if(form.city.value == ""){
+    			alert( "Please enter your city.");
+    			form.city.focus();
+   				return false;
+   			}
+    		if(form.state.value == ""){
+    			alert( "Please enter your state.");
+    			form.state.focus();
+   				return false;
+   			}
+    	}
+  
     </script>
 </head>
 <header>
@@ -27,7 +46,7 @@
 </header>
 <body>
     <h2 style="text-align:center">Update Address</h2>
-    <form method="post" th:action="@{/adopter/updateAddress}">
+    <form method="post" th:action="@{/adopter/updateAddress}" name="form" onsubmit="return checkForm(this);">
         <div>
             <label for="street">Street:</label>
             <input type="text" id="street" name="street" required>
