@@ -15,45 +15,26 @@
 		<nav>
 			<div class="container">
 				<ul>
-					<li><a th:href="@{/employeeMenu}">Home</a></li>
-					<li><a th:href="@{/employeeLogin}">Add Animal</a></li>
-					<li><a th:href="@{/employeeLogin}">View Animals</a></li>
-					<li><a th:href="@{/messages}">Messages</a></li>
-					<li><a th:href="@{/employeeLogout}">Logout</a></li>
+					<li><a href="index.html">Home</a></li>
+					<li><a th:href="@{/viewAvailableAnimals}">View Available Animals</a></li>
+					<li><a th:href="@{/search}">Search Available Animals</a></li>
+					<li><a th:href="@{/application}">Adoption Application</a></li>
+					<li><a th:href="@{/adopterLogout}">Logout</a></li>
 				</ul>
 			</div>
 		</nav>
-</header>
+	</header>
 
 <body>
-<h2> Available Animals For Adoption: </h2>
+<h2 style="text-align:center"> Available Animals For Adoption: </h2>
+<div style="text-align:center">
+	<a href="/search"><button type="button">Search Animals</button></a>
 
-<h2>Search Animals</h2>
-    <form th:action="@{/searchAnimals}" method="GET">
-        <label for="searchTerm">Search Term:</label>
-        <input type="text" id="searchTerm" name="searchTerm" />
-        <button type="submit">Search</button>
-    </form>
-    <br/>
-    <h2>Search Results:</h2>
-<table>
-    <tr>
-        <th>Animal ID</th>
-        <th>Name</th>
-        <th>Species</th>
-        <th>Age</th>
-    </tr>
-	<tr th:each="animal : ${searchResults}">
-	    <td th:text="${animal.id}"></td>
-	    <td th:text="${animal.name}"></td>
-	    <td th:text="${animal.species}"></td>
-	    <td th:text="${animal.age}"></td>
-	</tr>
-</table>
-    <br/>
-    
+</div>
+
 <form>
 <table>
+
 <tr th:each="currentAnimal : ${availableAnimals}" >
 	<td> <p>Animal Id:</p> </td>
 	<td th:text="${currentAnimal.id}" />
@@ -67,7 +48,10 @@
 	<td th:text="${currentAnimal.arrivalDate}" />
 	<td> <p> | Good with kids? </p> </td>
 	<td th:text="${currentAnimal.goodWithKids}" />
-	
+	<td> <p> | Color: </p> </td>
+	<td th:text="${currentAnimal.color}" />
+	<td> <p> | Sex: </p> </td>
+	<td th:text="${currentAnimal.sex}" />
 </tr>
 </table>
 	<div>

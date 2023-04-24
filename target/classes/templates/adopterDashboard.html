@@ -15,6 +15,7 @@
 				<ul>
 					<li><a href="index.html">Home</a></li>
 					<li><a th:href="@{/viewAvailableAnimals}">View Available Animals</a></li>
+					<li><a th:href="@{/search}">Search Available Animals</a></li>
 					<li><a th:href="@{/application}">Adoption Application</a></li>
 					<li><a th:href="@{/adopterLogout}">Logout</a></li>
 				</ul>
@@ -23,7 +24,7 @@
 	</header>
 <!-- Body: TO DO -LINKS- -->
 <body>
-			<h1>Welcome, <span th:text="${adopter.name}"></span>!</h1>
+		<h1>Welcome, <span th:text="${adopter.name}"></span>!</h1>
 		<section id="your-info">
         <h2>Your Information:</h2>
         <ul>
@@ -32,18 +33,10 @@
         </ul>
         </section>
     
-		<section id="available-animals">
-			<h2>Available Animals:</h2>
-			<a th:href="@{/viewAvailableAnimals}">View Available Animals</a>
-		</section>
-		<section id="adoption-application">
-			<h2>Adoption Application</h2>
-			<a href="#" class="btn">Apply Now</a>
-		</section>
 		<section id="actions">
 			<h2>Actions:</h2>
 			<ul>
-				<li><a th:href="@{/application}">View Your Applications</a></li>
+				<li><a th:href="@{/application}">Adoption Application</a></li>
 				<li><a th:href="@{/updatePasswordAdopter}">Update Password</a></li>
 				<li><a th:href="@{/updateAddressAdopter}">Update Address</a></li>
 				<li><a th:href="@{/contact}">Contact Us</a></li>

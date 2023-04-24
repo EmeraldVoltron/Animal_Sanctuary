@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <table>
+        <tbody>
+            <tr th:each="animal : ${animals}">
+            <th>ID:</th>
+                <td th:text="${animal.id}"></td>
+            <th>Name:</th>
+                <td th:text="${animal.name}"></td>
+            <th>Breed:</th>
+                <td th:text="${animal.breed}"></td>
+            <th>Species:</th>
+                <td th:text="${animal.species}"></td>
+             <th>Age:</th>    
+                <td th:text="${animal.age}"></td>
+            <th>Arrival Date:</th>
+                <td th:text="${animal.arrivalDate}"></td>
+             <th>Good with Kids:</th>
+                <td th:text="${animal.goodWithKids}"></td>
+             <th>Color:</th>
+                <td th:text="${animal.color}"></td>
+             <th>Sex:</th>
+                <td th:text="${animal.sex}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -9,9 +9,6 @@
 	<link rel="icon" href="Logo.svg" type="image/x-icon">
 	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
 </head>
-
-<body>
-
 <header>
 		<nav>
 			<div class="container">
@@ -26,7 +23,6 @@
 				</ul>
 			</div>
 		</nav>
-
 </header>
 
 <!-- 
@@ -35,6 +31,7 @@
  -->
  
 
+<!-- Add Color, and Sex -->
 <form th:object="${newAnimal}" th:action="@{/inputAnimal}" method='POST'>
  <h2>Input a new Animal: </h2>
 <input type="hidden" th:field="*{id}" />
@@ -44,6 +41,8 @@ Species: <input name="species" size="20" th:field="*{species}"><br />
 Age: <input name="age" size="20" th:field="*{age}"><br />
 Arrival Date: <input type="date" name="arrivalDate" size="10" th:field="*{arrivalDate}"> <br />
 Good with kids: <input name="goodWithKids" size="20" th:field="*{goodWithKids}"><br />
+Color: <input name="color" size="20" th:field="*{color}"><br />
+Sex: <input name="sex" size="20" th:field="*{sex}"><br />
 
 <input name="submit" type="submit" value="submit" />
 </form>

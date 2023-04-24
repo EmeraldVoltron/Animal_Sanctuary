@@ -14,6 +14,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,18 +25,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "animals")
 public class Animals {
-	@Id
-	@GeneratedValue
-	private long id;
-	private String name;
-	private String breed;
-	private String species;
-	private int age;
-	private Date arrivalDate;
-	private boolean goodWithKids;
-	private String animalColor;
-	
+@Id
+@GeneratedValue
+private Long id;
+
+private String name;
+private String breed;
+private String species;
+private Integer age;
+private Date arrivalDate;
+private Boolean goodWithKids;
+private String color;
+private String sex;
+
+private String search;
+
+
 	
 	public Animals(String name, String species, int age) {
 		super();
@@ -44,25 +51,23 @@ public class Animals {
 		this.age = age;
 	}
 	
-	public Animals(String name, String breed, String species, int age, Date arrivalDate, boolean goodWithKids) {
-		super();
-		this.name = name;
-		this.breed = breed;
-		this.age = age;
-		this.arrivalDate = arrivalDate;
-		
-		this.species = species;
-		this.goodWithKids = goodWithKids;
-	}
-	
-	public Animals(String name, int age) {
-		this.name = name;
-		this.age = age;
-	}
-	
-	public Animals(String name) {
-		this.name = name;
-	}
-	
+public Animals(String name, String breed, String species, Integer age, Date arrivalDate, Boolean goodWithKids, String color, String sex) {
+    this.name = name;
+    this.breed = breed;
+    this.species = species;
+    this.age = age;
+    this.arrivalDate = arrivalDate;
+    this.goodWithKids = goodWithKids;
+    this.color = color;
+    this.sex = sex;
 }
-	
+
+public Animals(String name, Integer age) {
+    this.name = name;
+    this.age = age;
+}
+
+public Animals(String name) {
+    this.name = name;
+}
+}
