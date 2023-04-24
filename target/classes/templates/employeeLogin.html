@@ -8,18 +8,23 @@
 -->
 	<title>Employee Login Page</title>
 	<script type = "text/javascript">
-		function checkForm(form){
-			if(form.username.value == ""){
-				alert( "Please enter your username.");
-				form.username.focus();
-				return false;
-			}
-			if(form.password.value == ""){
-				alert( "Please enter your password.");
-				form.password.focus();
-				return false;
-			}
-		}
+	function handleLogin(event) {
+        event.preventDefault();
+        const form = event.target;
+        const data = new FormData(form);
+        fetch(form.action, {
+            method: 'POST',
+            body: data
+        }).then(response => {
+            if (response.ok) {
+                window.location.href = '/employeeMenu'; // Redirect to the employee dashboard upon successful login
+            } else {
+                alert('Invalid username or password.'); // Show an error message if login fails
+            }
+        }).catch(error => {
+            console.error('Error submitting form:', error);
+        });
+    }
 	</script>
 	<link rel="stylesheet" href="style_logins.css">
 	<link rel="icon" href="Logo.svg" type="image/x-icon">
@@ -45,7 +50,7 @@
     <div th:if="${param.error}">
         <div class="error-message">Invalid username or password.</div>
     </div>
-    <form th:action="@{/employeeLogin}" method="post" name = "form" onsubmit="return checkForm(this);">
+    <form th:action="@{/employeeLogin}" method="post" name = "form" onsubmit="handleLogin(event);">
         <div>
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
