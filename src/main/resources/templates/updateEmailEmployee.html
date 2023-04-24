@@ -8,6 +8,14 @@
 	<link rel="shortcut icon" href="Logo.svg" type="image/x-icon">
     <script th:if="${showPopup}">
         alert('Email updated successfully!');
+        
+        function checkForm(form){
+    		if(form.newEmail.value == ""){
+    			alert( "Please enter a new email");
+    			form.oldPassword.focus();
+   				return false;
+   			}
+    	}
     </script>
 </head>
 
@@ -29,7 +37,7 @@
 
 <body>
     <h2 style="text-align:center">Update Email</h2>
-   <form method="post" th:action="@{/employee/updateEmail}">
+   <form method="post" th:action="@{/employee/updateEmail}" name="form" onsubmit="return checkForm(this);">
         <div>
             <label for="newEmail">New Email:</label>
             <input type="text" id="newEmail" name="newEmail" required>
