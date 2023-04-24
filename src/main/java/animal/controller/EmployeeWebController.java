@@ -41,7 +41,24 @@ public class EmployeeWebController {
 	@Autowired
 	private ContactMessageRepository contactMessageRepository;
 	
-	//AMB 4/11 - added employee login webcontrollers
+	
+	@GetMapping("/employees/{username}")
+	public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable String username) {
+		Optional<Employee> optionalEmployee = employeeRepository.findByUsername(username);
+
+	    if (optionalEmployee.isPresent()) {
+	    	Employee employee = optionalEmployee.get();
+	        return new ResponseEntity<>(employee, HttpStatus.OK);
+	    } else {
+	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	    }
+	}
+	
+	
+	/**
+	 * Register Employee Methods: 
+	 */
+	
     @GetMapping("/registerEmployee")
     public String showEmployeeRegistrationForm(Model model) {
     	model.addAttribute("employee", new Employee());
@@ -57,17 +74,10 @@ public class EmployeeWebController {
     	return "redirect:/employeeLogin";
     }
     
-	@GetMapping("/employees/{username}")
-	public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable String username) {
-		Optional<Employee> optionalEmployee = employeeRepository.findByUsername(username);
-
-	    if (optionalEmployee.isPresent()) {
-	    	Employee employee = optionalEmployee.get();
-	        return new ResponseEntity<>(employee, HttpStatus.OK);
-	    } else {
-	        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	    }
-	}
+	
+    /**
+     * Employee Login Methods:
+     */
 
     //gets employeelogin link and shows the login form
     @GetMapping("/employeeLogin")
@@ -110,7 +120,11 @@ public class EmployeeWebController {
         session.invalidate();
         return "redirect:/employeeLogin";
     }
-
+    
+    /**
+     * Update Employee Password methods:
+     */
+    
     @GetMapping("/updatePasswordEmployee")
     public String showEmployeeUpdatePasswordForm(Model model, HttpSession session) {
         Employee employee = (Employee) session.getAttribute("employee");
@@ -142,6 +156,10 @@ public class EmployeeWebController {
         return "updatePasswordEmployee";
     }
     
+    /**
+     * Update Employee Email methods: 
+     */
+    
     @GetMapping("/updateEmailEmployee")
     public String showUpdateEmailForm(Model model, HttpSession session) {
     	Employee employee = (Employee) session.getAttribute("employee");
@@ -168,6 +186,10 @@ public class EmployeeWebController {
         return "updateEmailEmployee";
     }
     
+    /**
+     * Update Employee phone number methods: 
+     */
+    
     @GetMapping("/updatePhoneEmployee")
     public String showUpdateEmployeeForm(Model model, HttpSession session) {
     	Employee employee = (Employee) session.getAttribute("employee");
@@ -180,7 +202,7 @@ public class EmployeeWebController {
     }
     
     @PostMapping("/employee/updatePhone")
-    public String updateAdopterAddress(@ModelAttribute String phone, HttpSession session, Model model) {
+    public String updateAdopterPhone(@ModelAttribute String phone, HttpSession session, Model model) {
         Employee employee = (Employee) session.getAttribute("employee");
         if (employee == null) {
             return "redirect:/employeeLogin";
@@ -194,6 +216,11 @@ public class EmployeeWebController {
         return "updatePhoneEmployee";
     }
 
+    /**
+     * Employee Message viewing methods:
+     */
+    
+    
     @GetMapping("/messages")
     public String viewMessages(Model model) {
         List<ContactMessage> messages = contactMessageRepository.findAll();
