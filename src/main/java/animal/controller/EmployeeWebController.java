@@ -22,9 +22,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import animal.beans.Adopter;
 import animal.beans.ContactMessage;
 import animal.beans.Employee;
 import animal.beans.EmployeeLoginForm;
+import animal.repository.AdopterRepository;
 import animal.repository.ContactMessageRepository;
 import animal.repository.EmployeeRepository;
 import jakarta.servlet.http.HttpSession;
@@ -40,6 +42,9 @@ public class EmployeeWebController {
 	
 	@Autowired
 	private ContactMessageRepository contactMessageRepository;
+	
+	@Autowired
+	AdopterRepository adopterRepository;
 	
 	
 	@GetMapping("/employees/{username}")
@@ -243,5 +248,24 @@ public class EmployeeWebController {
     public String deleteMessage(@PathVariable("id") Long id) {
         contactMessageRepository.deleteById(id);
         return "redirect:/messages";
+    }
+    
+    /**
+     * View adopters from employee view
+     */
+    @GetMapping("/viewAdopters")
+    public String viewAdoptersList(Model model) {
+    	if(adopterRepository.findAll().isEmpty()) {
+    		model.addAttribute("message", "No adopters in system.");
+    	}
+        model.addAttribute("adopters", adopterRepository.findAll());
+        return "adoptersList";
+    }
+    
+    @GetMapping("/deleteAdopter/{id}")
+    public String deleteAdopter(@PathVariable("id") Long id) {
+        Adopter a = adopterRepository.findById(id).orElse(null);
+        adopterRepository.delete(a);
+        return "redirect:/viewAdopters";
     }
 }

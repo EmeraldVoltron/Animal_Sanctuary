@@ -11,4 +11,5 @@ import animal.beans.Adopter;
 //@Repository
 public interface AdopterRepository extends JpaRepository<Adopter, Long> {
  Optional<Adopter> findByUsername(String username);
+ Optional<Adopter> findById(Long id);
 }
