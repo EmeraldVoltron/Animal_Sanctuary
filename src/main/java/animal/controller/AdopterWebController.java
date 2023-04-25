@@ -138,7 +138,7 @@ public class AdopterWebController {
             return "redirect:/adopterLogin";
         }
         model.addAttribute("adopter", adopter);
-        return "updatePasswordEmployee";
+        return "updatePasswordAdopter";
     }
     
     @PostMapping("/adopter/updatePassword")
@@ -150,7 +150,7 @@ public class AdopterWebController {
         if (!adopter.getPassword().equals(oldPassword)) {
             model.addAttribute("error", "Incorrect old password");
             model.addAttribute("adopter", adopter);
-            return "adopterDashboard";
+            return "adopterLogin";
         }
         adopter.setPassword(newPassword);
         adopterRepository.save(adopter);
