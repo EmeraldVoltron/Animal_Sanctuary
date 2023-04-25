@@ -27,6 +27,7 @@ import animal.beans.ContactMessage;
 import animal.beans.Employee;
 import animal.beans.EmployeeLoginForm;
 import animal.repository.AdopterRepository;
+import animal.repository.ApplicationRepository;
 import animal.repository.ContactMessageRepository;
 import animal.repository.EmployeeRepository;
 import jakarta.servlet.http.HttpSession;
@@ -45,6 +46,9 @@ public class EmployeeWebController {
 	
 	@Autowired
 	AdopterRepository adopterRepository;
+	
+	@Autowired
+	ApplicationRepository applicationRepository;
 	
 	
 	@GetMapping("/employees/{username}")
@@ -276,4 +280,16 @@ public class EmployeeWebController {
         adopterRepository.delete(a);
         return "redirect:/viewAdopters";
     }
+    /**
+     * RPA - View adoption applications from employee view
+     */
+    @GetMapping("/viewApplications")
+    public String viewApplicationsList(Model model) {
+    	if(applicationRepository.findAll().isEmpty()) {
+    		return "redirect:/employeeMenu";
+    	}
+    	model.addAttribute("adopter_application_form", applicationRepository.findAll());
+    	return "viewApplications";
+    }
+
 }

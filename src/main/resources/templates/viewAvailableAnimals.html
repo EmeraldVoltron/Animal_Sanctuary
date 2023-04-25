@@ -34,25 +34,31 @@
 
 <form>
 <table>
+	<thead>
+	<tr>
+		<th>|   Animal Id   | </th>
+		<th>   Name   | </th>
+		<th>   Species   | </th>
+		<th>   Age   | </th>
+		<th>   Arrival Date   | </th>
+		<th>   Good with kids?   | </th>
+		<th>   Color   | </th>
+		<th>   Sex   | </th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr th:each="currentAnimal : ${availableAnimals}" >
+		<td th:text="${currentAnimal.id}" />
+		<td th:text="${currentAnimal.name}"  />
+		<td th:text="${currentAnimal.species}" />
+		<td th:text="${currentAnimal.age}" />
+		<td th:text="${currentAnimal.arrivalDate}" />
+		<td th:text="${currentAnimal.goodWithKids}" />
+		<td th:text="${currentAnimal.color}" />
+		<td th:text="${currentAnimal.sex}" />
+	</tr>
+	</tbody>
 
-<tr th:each="currentAnimal : ${availableAnimals}" >
-	<td> <p>Animal Id:</p> </td>
-	<td th:text="${currentAnimal.id}" />
-	<td> <p> | Name:</p> </td>
-	<td th:text="${currentAnimal.name}"  />
-	<td> <p> |  Species: </p> </td>
-	<td th:text="${currentAnimal.species}" />
-	<td> <p> | Age: </p> </td>
-	<td th:text="${currentAnimal.age}" />
-	<td> <p> | Arrival Date: </p> </td>
-	<td th:text="${currentAnimal.arrivalDate}" />
-	<td> <p> | Good with kids? </p> </td>
-	<td th:text="${currentAnimal.goodWithKids}" />
-	<td> <p> | Color: </p> </td>
-	<td th:text="${currentAnimal.color}" />
-	<td> <p> | Sex: </p> </td>
-	<td th:text="${currentAnimal.sex}" />
-</tr>
 </table>
 	<div>
 		<a href="/adopterDashboard"><button type="button">Return to Dashboard</button></a>

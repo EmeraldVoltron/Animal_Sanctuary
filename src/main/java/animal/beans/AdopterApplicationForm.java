@@ -7,6 +7,11 @@ package animal.beans;
 
 import javax.validation.constraints.NotEmpty;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 /**
@@ -15,6 +20,9 @@ import lombok.Data;
  */
 @Data
 public class AdopterApplicationForm {
+	@Id
+	@GeneratedValue
+	private long id;
 	@NotEmpty
 	private String name;
 	@NotEmpty
