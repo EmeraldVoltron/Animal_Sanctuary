@@ -41,4 +41,6 @@ public class AdopterApplicationForm {
 	private String age;
 	@NotEmpty
 	private String adoptee;
+	@NotEmpty
+	private String status = "Pending";
 }
