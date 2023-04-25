@@ -19,6 +19,9 @@ import lombok.Data;
  *
  */
 @Data
+@Entity
+@Embeddable
+@Table(name="adopter_application_form")
 public class AdopterApplicationForm {
 	@Id
 	@GeneratedValue
