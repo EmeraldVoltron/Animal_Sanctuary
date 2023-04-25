@@ -1,7 +1,5 @@
 package animal.controller;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -22,8 +20,7 @@ import animal.beans.Address;
 import animal.beans.Adopter;
 import animal.beans.AdopterApplicationForm;
 import animal.beans.AdopterLoginForm;
-import animal.beans.Animals;
-import animal.beans.Employee;
+import animal.beans.ApplicationForm;
 
 import animal.repository.AdopterRepository;
 import animal.repository.AnimalRepository;
@@ -40,10 +37,7 @@ public class AdopterWebController {
     private AnimalRepository animalRepository;
     
     @Autowired
-	ApplicationRepository applicationRepository;
-    
-    
-   
+    private ApplicationRepository applicationRepository;
    
 
     @GetMapping("/adopters/{username}")
@@ -172,39 +166,30 @@ public class AdopterWebController {
      */
     @GetMapping("/application")
     public String showApplicationForm(Model model) {
-    	model.addAttribute("applicationForm");
+    	model.addAttribute("applicationForm", new ApplicationForm());
     	return "application";
     }
 
-    @PostMapping("/application")
-    public String submitApplication(@ModelAttribute("adopterApplicationForm") @Valid AdopterApplicationForm adopterApplicationForm, Model model) {
-    	if (adopterApplicationForm.getName().isEmpty() || adopterApplicationForm.getHome().isEmpty() || adopterApplicationForm.getStreet().isEmpty() || adopterApplicationForm.getCity().isEmpty() || adopterApplicationForm.getState().isEmpty() || adopterApplicationForm.getAge().isEmpty() || adopterApplicationForm.getAdoptee().isEmpty()){
+    @PostMapping("/application") 
+    public String submitApplication(@ModelAttribute("applicationForm") ApplicationForm applicationForm, Model model) {
+    	if (applicationForm.getName().isEmpty() || applicationForm.getHome().isEmpty() || applicationForm.getStreet().isEmpty() || applicationForm.getCity().isEmpty() || applicationForm.getState().isEmpty() || applicationForm.getAge().isEmpty() || applicationForm.getAdoptee().isEmpty()){
+    		model.addAttribute("errorMsg", "Please fill in all fields");
     		return "application";
     	}
     	
-    	
     	//save form to database
-    	AdopterApplicationForm adopterForm = new AdopterApplicationForm();
-    	adopterForm.setName(adopterApplicationForm.getName());
-    	adopterForm.setHome(adopterApplicationForm.getHome());
-    	adopterForm.setStreet(adopterApplicationForm.getStreet());
-    	adopterForm.setCity(adopterApplicationForm.getCity());
-    	adopterForm.setState(adopterApplicationForm.getState());
-    	adopterForm.setAge(adopterApplicationForm.getAge());
-    	adopterForm.setAdoptee(adopterApplicationForm.getAdoptee());
-    	applicationRepository.save(adopterForm);
+    	AdopterApplicationForm adopterAppForm = new AdopterApplicationForm();
+    	adopterAppForm.setName(applicationForm.getName());
+    	adopterAppForm.setHome(applicationForm.getHome());
+    	adopterAppForm.setStreet(applicationForm.getStreet());
+    	adopterAppForm.setCity(applicationForm.getCity());
+    	adopterAppForm.setState(applicationForm.getState());
+    	adopterAppForm.setAge(applicationForm.getAge());
+    	adopterAppForm.setAdoptee(applicationForm.getAdoptee());
+    	applicationRepository.save(adopterAppForm);
     	return "application";
-    	
-    	/*Optional<Adopter> optionalAdopter = applicationRepository.findByUsername(adopterApplicationForm.getName());
-    	if (optionalAdopter.isPresent()) {
-    		Adopter adopter = optionalAdopter.get();
-    		session.setAttribute("adopter", adopter);
-    		return "redirect:/adopterDashboard";
-    	} else {
-    		return "application";
-    	}*/
     }
-
+    	
 
 }
 

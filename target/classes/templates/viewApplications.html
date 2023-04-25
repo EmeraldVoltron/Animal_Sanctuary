@@ -15,11 +15,13 @@
 		<nav>
 			<div class="container">
 				<ul>
-					<li><a href="index.html">Home</a></li>
-					<li><a th:href="@{/viewAvailableAnimals}">View Available Animals</a></li>
-					<li><a th:href="@{/search}">Search Available Animals</a></li>
-					<li><a th:href="@{/application}">Adoption Application</a></li>
-					<li><a th:href="@{/adopterLogout}">Logout</a></li>
+					<li><a th:href="@{/employeeMenu}">Home</a></li>
+					<li><a th:href="@{/inputAnimal}">Add Animal</a></li>
+					<li><a th:href="@{/viewAll}">View Animals</a></li>
+					<li><a th:href="@{/messages}">Messages</a></li>
+					<li><a th:href="@{/viewApplications}">View applications</a></li>
+     				<li><a th:href="@{/viewAdopters}">View adopters</a></li>
+					<li><a th:href="@{/employeeLogout}">Logout</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -28,29 +30,31 @@
 <h2 style="text-align:center"> Adoption Applications: </h2>
 <form>
 <table>
-	<tr th:each="currentApplication : ${application}" >
-	<td> <p>Adopter Id:</p> </td>
-	<td th:text="${currentApplication.id}" />
-	<td> <p>Adopter Name:</p> </td>
-	<td th:text="${currentApplication.name}" />
-	<td> <p> | Own a home?:</p> </td>
-	<td th:text="${currentApplication.home}"  />
-	
-	<td> <p> | Street:</p> </td>
-	<td th:text="${currentApplication.street}" />
-	<td> <p> | City:</p> </td>
-	<td th:text="${currentApplication.city}" />
-	<td> <p> | State:</p> </td>
-	<td th:text="${currentApplication.state}" />
-	<td> <p> | Age:</p> </td>
-	<td th:text="${currentApplication.age}" />
-	<td> <p> | Who would you like to adopt? : </p> </td>
-	<td th:text="${currentApplication.adoptee}" /></td>
-	
-
-	
-</tr>
+	<thead>
+		<tr>
+			<th>| Adopter's Name | </th>
+			<th> Do they own their home? | </th>
+			<th> Street | </th>
+			<th> City | </th>
+			<th> State | </th>
+			<th> Age | </th>
+			<th> Adoptee | </th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr th:each="currentApp : ${adopter_application_form}">
+			<td th:text="${currentApp.name}" />
+			<td th:text="${currentApp.home}" />
+			<td th:text="${currentApp.street}"/>
+			<td th:text="${currentApp.city}" />
+			<td th:text="${currentApp.state}" />
+			<td th:text="${currentApp.age}" />
+			<td th:text="${currentApp.adoptee}" />
+		</tr>
+	</tbody>
 </table>
+
+
 </form>
 </body>
 <footer>

@@ -280,7 +280,7 @@ public class EmployeeWebController {
         adopterRepository.delete(a);
         return "redirect:/viewAdopters";
     }
-    
+
     /**
      * RPA - View adoption applications from employee view
      */
@@ -289,8 +289,7 @@ public class EmployeeWebController {
     	if(applicationRepository.findAll().isEmpty()) {
     		return "redirect:/employeeMenu";
     	}
-    	model.addAttribute("application", applicationRepository.findAll());
+    	model.addAttribute("adopter_application_form", applicationRepository.findAll());
     	return "viewApplications";
     }
-    
 }
