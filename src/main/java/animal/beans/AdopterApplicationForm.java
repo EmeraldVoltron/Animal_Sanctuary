@@ -7,14 +7,25 @@ package animal.beans;
 
 import javax.validation.constraints.NotEmpty;
 
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author riley
  *
  */
+@Embeddable
+@Entity
 @Data
+@NoArgsConstructor
+@Table(name="adopter_application_form")
 public class AdopterApplicationForm {
+	@Id
+	private long id;
 	@NotEmpty
 	private String name;
 	@NotEmpty
