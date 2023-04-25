@@ -27,6 +27,7 @@ import animal.beans.Employee;
 
 import animal.repository.AdopterRepository;
 import animal.repository.AnimalRepository;
+import animal.repository.ApplicationRepository;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -37,6 +38,10 @@ public class AdopterWebController {
     
     @Autowired
     private AnimalRepository animalRepository;
+    
+    @Autowired
+	ApplicationRepository applicationRepository;
+    
     
    
    
@@ -172,18 +177,32 @@ public class AdopterWebController {
     }
 
     @PostMapping("/application")
-    public String submitApplication(@ModelAttribute("adopterApplicationForm") @Valid AdopterApplicationForm adopterApplicationForm, BindingResult result, HttpSession session) {
-    	if (result.hasErrors()) {
+    public String submitApplication(@ModelAttribute("adopterApplicationForm") @Valid AdopterApplicationForm adopterApplicationForm, Model model) {
+    	if (adopterApplicationForm.getName().isEmpty() || adopterApplicationForm.getHome().isEmpty() || adopterApplicationForm.getStreet().isEmpty() || adopterApplicationForm.getCity().isEmpty() || adopterApplicationForm.getState().isEmpty() || adopterApplicationForm.getAge().isEmpty() || adopterApplicationForm.getAdoptee().isEmpty()){
     		return "application";
     	}
-    	Optional<Adopter> optionalAdopter = adopterRepository.findByUsername(adopterApplicationForm.getName());
+    	
+    	
+    	//save form to database
+    	AdopterApplicationForm adopterForm = new AdopterApplicationForm();
+    	adopterForm.setName(adopterApplicationForm.getName());
+    	adopterForm.setHome(adopterApplicationForm.getHome());
+    	adopterForm.setStreet(adopterApplicationForm.getStreet());
+    	adopterForm.setCity(adopterApplicationForm.getCity());
+    	adopterForm.setState(adopterApplicationForm.getState());
+    	adopterForm.setAge(adopterApplicationForm.getAge());
+    	adopterForm.setAdoptee(adopterApplicationForm.getAdoptee());
+    	applicationRepository.save(adopterForm);
+    	return "application";
+    	
+    	/*Optional<Adopter> optionalAdopter = applicationRepository.findByUsername(adopterApplicationForm.getName());
     	if (optionalAdopter.isPresent()) {
     		Adopter adopter = optionalAdopter.get();
     		session.setAttribute("adopter", adopter);
     		return "redirect:/adopterDashboard";
     	} else {
     		return "application";
-    	}
+    	}*/
     }
 
 
