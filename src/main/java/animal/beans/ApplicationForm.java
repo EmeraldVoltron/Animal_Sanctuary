@@ -33,8 +33,9 @@ public class ApplicationForm {
 	private String state;
 	private String age;
 	private String adoptee;
+	private String status;
 	
-	public ApplicationForm(String name, String home, String street, String city, String state, String age, String adoptee) {
+	public ApplicationForm(String name, String home, String street, String city, String state, String age, String adoptee, String status) {
 		this.name = name;
 	    this.home = home;
 	    this.street = street;
@@ -42,5 +43,6 @@ public class ApplicationForm {
 	    this.state = state;
 	    this.age = age;
 	    this.adoptee = adoptee;
+	    this.status = "pending";
 	}
 }

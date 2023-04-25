@@ -27,6 +27,7 @@
 		</nav>
 	</header>
 <body>
+
 <h2 style="text-align:center"> Adoption Applications: </h2>
 <form>
 <table>
@@ -39,6 +40,7 @@
 			<th> State | </th>
 			<th> Age | </th>
 			<th> Adoptee | </th>
+			<th> Application Status | </th>
 		</tr>
 	</thead>
 	<tbody>
@@ -50,12 +52,12 @@
 			<td th:text="${currentApp.state}" />
 			<td th:text="${currentApp.age}" />
 			<td th:text="${currentApp.adoptee}" />
+			<td th:text="${currentApp.status}" />
 		</tr>
 	</tbody>
 </table>
-
-
 </form>
+
 </body>
 <footer>
     <div class="container">
