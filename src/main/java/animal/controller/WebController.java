@@ -54,15 +54,25 @@ public class WebController {
     }
 
     @PostMapping("/register")
-    public String submitAdopterRegistrationForm(@ModelAttribute("adopter") @Valid Adopter adopter, BindingResult result, @RequestParam("street") String street, @RequestParam("city") String city, @RequestParam("state") String state) {
+    public String submitAdopterRegistrationForm(@ModelAttribute("adopter") @Valid Adopter adopter, BindingResult result, @RequestParam("street") String street, @RequestParam("city") String city, @RequestParam("state") String state, Model model) {
         if (result.hasErrors()) {
             return "/register";
         }
+        
+        Optional<Adopter> existingAdopter = adopterRepository.findByUsername(adopter.getUsername());
+        if (existingAdopter.isPresent()) {
+            // Display a pop-up message if the username already exists
+            model.addAttribute("usernameExists", true);
+            return "/register";
+        }
+        
         Address address = new Address(street, city, state);
         adopter.setAddress(address);
         adopterRepository.save(adopter);
         return "redirect:/adopterLogin";
     }
+
+
     
     /**
      *  Animals:

@@ -18,6 +18,8 @@
 	
 	
 	</script>
+	
+	
 </head>
 <header>
 	<nav>
@@ -95,4 +97,8 @@
     <p style="text-align: center;">@2023 Animal Sanctuary. All rights reserved.</p>
     </div>
 </footer>
+<!-- Add this script block at the bottom of the page -->
+<script th:if="${usernameExists}">
+    alert('Username already exists. Please choose a different username.');
+</script>
 </html>
